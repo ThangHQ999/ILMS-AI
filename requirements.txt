@@ -1,0 +1,11 @@
+lightrag-hku[neo4j]
+pymysql
+python-dotenv
+langchain_google_genai
+pypdf 
+python-docx 
+python-pptx 
+openpyxl 
+beautifulsoup4
+chromadb
+google
