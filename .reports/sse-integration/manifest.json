@@ -1,0 +1,87 @@
+[
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\src\\main\\java\\com\\example\\ilms\\dto\\socratic\\SocraticChatStreamRequestDto.java",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\src\\main\\java\\com\\example\\ilms\\dto\\socratic\\SocraticChatStreamRequestDto.java",
+    "original_sha256": "a58ae756916603d5cd79c347b306818b2a9ff1d5cf3c25fa0734a2f859a370a8"
+  },
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\src\\main\\java\\com\\example\\ilms\\exception\\ErrorCode.java",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\src\\main\\java\\com\\example\\ilms\\exception\\ErrorCode.java",
+    "original_sha256": "1c0a24466bc2b2d3cfaa22ad7af55b45b986c87f4ed97c9436f782828686357a"
+  },
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\src\\main\\java\\com\\example\\ilms\\service\\SocraticTutorBridgeService.java",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\src\\main\\java\\com\\example\\ilms\\service\\SocraticTutorBridgeService.java",
+    "original_sha256": "f5fb4c8a951a79320cd59c19138f141359af8aa1ee24e7c1e39153d7a7674e4d"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\schemas\\socratic-chat.schema.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\schemas\\socratic-chat.schema.ts",
+    "original_sha256": "8e1d41662e2f454886e87211dd3dc87c3671e09ca82385b9699c0d7a3f4f7268"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\types.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\types.ts",
+    "original_sha256": "d78542a870b8817ceb76b6738729953bed326f2a610aebd41ac484b7681184a2"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\services\\socratic-chat.service.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\services\\socratic-chat.service.ts",
+    "original_sha256": "25a54b21148cc01ec9b19b6ffb42e7971adf5d64c4d9aae90a1de03f482189fa"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\hooks\\useSocraticStream.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\hooks\\useSocraticStream.ts",
+    "original_sha256": "dccbc1890fdd2d13d5edf39b1e474a65d55903ee4e5f283ed60b19a1ba8dbcef"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "original_sha256": "1476f1a398ff3aa091c94b08c2660e8489c2fd8e31193b55df3c5877c21b013f"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorChatCanvas.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\features\\ai-tutor\\components\\AiTutorChatCanvas.tsx",
+    "original_sha256": "d6a47ccf210e2671e040fc5508a64da0a1e5f4bbb72fe33100a1ab4dabe0720a"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\messages\\vi.json",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\messages\\vi.json",
+    "original_sha256": "b2ea2ae45783b3a5ee78a39d7bad098c3117ed9b1e30c1c3fbdcd677f639a36c"
+  },
+  {
+    "source": "D:\\ILMS-FE\\src\\messages\\en.json",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\src\\messages\\en.json",
+    "original_sha256": "74703b940f6b02eeccaa7cad419ca6469175e6a0cc35ee000a8f762554c8761c"
+  },
+  {
+    "source": "D:\\ILMS-FE\\reports\\2026-11-02-socratic-live-sse-integration.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\reports\\2026-11-02-socratic-live-sse-integration.md",
+    "original_sha256": null
+  },
+  {
+    "source": "D:\\ILMS-FE\\TASKS.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\TASKS.md",
+    "original_sha256": "e3a167085ccc501f1a0ed38f25354e58d9f653d59a0034b65e814933a280c3d9"
+  },
+  {
+    "source": "D:\\ILMS-FE\\docs\\api-spec.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\fe\\docs\\api-spec.md",
+    "original_sha256": "6b09abbf8d49305640c40c3d890ec595cf6963e33dc3370260ce3c55682be7ba"
+  },
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\reports\\2026-11-02-socratic-live-sse-integration.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\reports\\2026-11-02-socratic-live-sse-integration.md",
+    "original_sha256": null
+  },
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\TASKS.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\TASKS.md",
+    "original_sha256": "7b915989c3ffea7b062b56384483a094b8513e7355c07f2650f6496424639264"
+  },
+  {
+    "source": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\docs\\api-spec.md",
+    "stage": "D:\\ILMS-AI\\.reports\\sse-integration\\be\\docs\\api-spec.md",
+    "original_sha256": "4c55d23b731cf1ca4ef10533733152edfc37cdea0093cee2286ddf9ebecd69e0"
+  }
+]

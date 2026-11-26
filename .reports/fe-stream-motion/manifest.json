@@ -1,0 +1,12 @@
+[
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\fe-stream-motion\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "sha256": "a1c15af37328757206638aa6d0cd99b225c1dcea7f7d09b9f8ddf9ef907de0cb"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.module.css",
+    "stage": "D:\\ILMS-AI\\.reports\\fe-stream-motion\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.module.css",
+    "sha256": null
+  }
+]

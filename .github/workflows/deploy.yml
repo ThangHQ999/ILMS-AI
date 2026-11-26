@@ -1,0 +1,162 @@
+name: Check and deploy ILMS-AI
+
+on:
+  pull_request:
+    branches: [main, test]
+  push:
+    branches: [main, test]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      APP_ENV: test
+      INTERNAL_API_KEY: ci-placeholder-key
+      MYSQL_PASSWORD: ci-placeholder
+      NEO4J_PASSWORD: ci-placeholder
+      OPENAI_API_KEY: ci-placeholder
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Check syntax and run unit tests
+        run: |
+          python -m compileall -q app
+          python -m unittest discover -s tests -v
+
+      - name: Verify the FastAPI entry point imports
+        run: python -c 'from app.main import app'
+
+  deploy:
+    needs: check
+    if: >-
+      (github.event_name == 'push' && github.ref == 'refs/heads/test') ||
+      (github.event_name == 'workflow_dispatch' &&
+        (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    concurrency:
+      group: ilms-ai-vps
+      cancel-in-progress: false
+
+    steps:
+      - name: Deploy FastAPI to VPS with PM2
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        env:
+          ILMS_AI_DEPLOY_PATH: ${{ vars.ILMS_AI_DEPLOY_PATH || '/var/www/ilms-ai/ILMS-AI' }}
+          ILMS_AI_PYTHON: ${{ vars.ILMS_AI_PYTHON || 'python3.12' }}
+          ILMS_AI_PORT: ${{ vars.ILMS_AI_PORT || '8000' }}
+          DEPLOY_BRANCH: ${{ github.ref_name }}
+          DEPLOY_SHA: ${{ github.sha }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          fingerprint: ${{ secrets.VPS_SSH_FINGERPRINT }}
+          envs: ILMS_AI_DEPLOY_PATH,ILMS_AI_PYTHON,ILMS_AI_PORT,DEPLOY_BRANCH,DEPLOY_SHA
+          command_timeout: 18m
+          script: |
+            set -e
+            export PATH="$PATH:/usr/local/bin"
+            if ! command -v pm2 >/dev/null 2>&1 && [ -s "$HOME/.nvm/nvm.sh" ]; then
+              . "$HOME/.nvm/nvm.sh"
+            fi
+            set -u
+            export GIT_TERMINAL_PROMPT=0
+
+            cd "$ILMS_AI_DEPLOY_PATH"
+            command -v "$ILMS_AI_PYTHON" >/dev/null
+            command -v pm2 >/dev/null
+            command -v curl >/dev/null
+            if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+              echo 'The VPS checkout has local changes to tracked files.' >&2
+              exit 1
+            fi
+
+            git fetch --no-tags origin "$DEPLOY_BRANCH"
+            if [ "$(git rev-parse FETCH_HEAD)" != "$DEPLOY_SHA" ]; then
+              echo 'The branch advanced after this run started. Skipping the superseded deployment.'
+              exit 0
+            fi
+
+            previous_commit=$(git rev-parse HEAD)
+            runtime_dir="$(git rev-parse --absolute-git-dir)/ilms-ai-runtime"
+            active_venv="$runtime_dir/active-venv"
+            previous_venv=$(readlink "$active_venv" || true)
+            next_venv="$runtime_dir/venv-a"
+            if [ "$previous_venv" = "$next_venv" ]; then
+              next_venv="$runtime_dir/venv-b"
+            fi
+
+            process_exists=$(pm2 jlist --silent | "$ILMS_AI_PYTHON" -c '
+            import json
+            import sys
+
+            apps = [entry for entry in json.load(sys.stdin) if entry["name"] == "ilms-ai"]
+            if len(apps) > 1 or any(entry["pm2_env"]["pm_exec_path"] != sys.argv[1] for entry in apps):
+                sys.exit("PM2 process name ilms-ai is already assigned to another launch configuration.")
+            print("true" if apps else "false")
+            ' "$runtime_dir/start.sh")
+
+            # Prepare dependencies before changing the revision or restarting the running service.
+            mkdir -p "$runtime_dir"
+            git show "$DEPLOY_SHA:requirements.txt" > "$runtime_dir/requirements.txt"
+            "$ILMS_AI_PYTHON" -m venv --clear "$next_venv"
+            "$next_venv/bin/python" -m pip install -r "$runtime_dir/requirements.txt"
+            "$next_venv/bin/python" -m pip check
+            printf '%s\n' "$ILMS_AI_PORT" > "$next_venv/port"
+
+            cat > "$runtime_dir/start.sh" <<'START'
+            #!/bin/sh
+            set -eu
+            venv=$(readlink "$(dirname "$0")/active-venv")
+            read -r port < "$venv/port"
+            exec "$venv/bin/python" -m uvicorn app.main:app --host 127.0.0.1 --port "$port"
+            START
+
+            start_ai() {
+              if [ "$process_exists" = true ]; then
+                pm2 restart ilms-ai
+              else
+                pm2 start "$runtime_dir/start.sh" --name ilms-ai --cwd "$PWD" --interpreter /bin/sh
+              fi
+            }
+
+            git switch --detach "$DEPLOY_SHA"
+            if ln -sfnT "$next_venv" "$active_venv" && start_ai && \
+              curl --fail --silent --show-error --max-time 5 --retry 20 --retry-all-errors \
+                --retry-delay 2 "http://127.0.0.1:$ILMS_AI_PORT/health" >/dev/null; then
+              pm2 save
+              exit 0
+            fi
+
+            echo 'Deploy health check failed. Restoring the previous revision.' >&2
+            git switch --detach "$previous_commit"
+            if [ -n "$previous_venv" ]; then
+              ln -sfnT "$previous_venv" "$active_venv"
+            else
+              rm -f -- "$active_venv"
+            fi
+            if [ "$process_exists" = true ]; then
+              pm2 restart ilms-ai
+            else
+              pm2 delete ilms-ai || true
+            fi
+            exit 1

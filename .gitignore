@@ -1,3 +1,5 @@
 data/**
 .env
+/a.txt
 __pycache__/
+.vscode

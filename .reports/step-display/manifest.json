@@ -1,0 +1,67 @@
+[
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\schemas\\socratic-chat.schema.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\schemas\\socratic-chat.schema.ts",
+    "sha256": "d4c8b121c10cb3e81984cd5fbf989b6b283df481598daca84c68393a1c2e55aa"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\types.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\types.ts",
+    "sha256": "d38e2c274eefc0e5bd4d76dd95b3a1c72c28b940d5c2728a8b2e5d4572fdf5a1"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\hooks\\useSocraticStream.ts",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\hooks\\useSocraticStream.ts",
+    "sha256": "5111032e60499bcfec71251ac7a88ae22c7be6fb6089a01da334cf65207c3766"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\components\\AiTutorMessageItem.tsx",
+    "sha256": "6d4f42eafe4c27fe5a9817c004cd5e3334afa9425dcbfc9cecd2b8fa48cbbcaf"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\AiTutorPageView.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\components\\AiTutorPageView.tsx",
+    "sha256": "03b6ae2360955e82b349c404a5e4135ea5e3f605baac09d2d239bf9a18de10cd"
+  },
+  {
+    "target": "D:\\ILMS-FE\\src\\features\\ai-tutor\\components\\SocraticStepperCard.tsx",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\src\\features\\ai-tutor\\components\\SocraticStepperCard.tsx",
+    "sha256": "7767b5e4d0b095f064610e942035168b13a5152b162ab274ae2afde8f8f17742"
+  },
+  {
+    "target": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\src\\main\\java\\com\\example\\ilms\\dto\\socratic\\SocraticSessionDetailDto.java",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\be\\src\\main\\java\\com\\example\\ilms\\dto\\socratic\\SocraticSessionDetailDto.java",
+    "sha256": "8c0cf639b6cdc5658a52eaa8f2a9c2f36e0d9f1fc07dc1982ccbdf0201537567"
+  },
+  {
+    "target": "D:\\ILMS-FE\\reports\\2026-11-02-confirmed-step-display.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\reports\\2026-11-02-confirmed-step-display.md",
+    "sha256": null
+  },
+  {
+    "target": "D:\\ILMS-FE\\TASKS.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\TASKS.md",
+    "sha256": "890023190ae2571020b54eacdbe43883f5de34a7c830ebf7e0273871aef2850e"
+  },
+  {
+    "target": "D:\\ILMS-FE\\docs\\api-spec.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\fe\\docs\\api-spec.md",
+    "sha256": "af2bba828eef7ae9d2e4b063eb02e254cfec22e20cb4567d8e422810cd56d5e5"
+  },
+  {
+    "target": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\reports\\2026-11-02-confirmed-step-display.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\be\\reports\\2026-11-02-confirmed-step-display.md",
+    "sha256": null
+  },
+  {
+    "target": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\TASKS.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\be\\TASKS.md",
+    "sha256": "dd875424d82b116be52398a8f95df93945e7b312adf93b0591a17275eee5f0c7"
+  },
+  {
+    "target": "C:\\Users\\Admin\\OneDrive\\Desktop\\dang_ky_tin_chi\\docs\\api-spec.md",
+    "stage": "D:\\ILMS-AI\\.reports\\step-display\\be\\docs\\api-spec.md",
+    "sha256": "389f742d33a904dee00add4814777746b442268a042211050f3054991e3bfca4"
+  }
+]
