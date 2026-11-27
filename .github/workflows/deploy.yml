@@ -47,7 +47,8 @@ jobs:
   deploy:
     needs: check
     if: >-
-      (github.event_name == 'push' && github.ref == 'refs/heads/test') ||
+      (github.event_name == 'push' &&
+        (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test')) ||
       (github.event_name == 'workflow_dispatch' &&
         (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/test'))
     runs-on: ubuntu-latest
@@ -115,7 +116,6 @@ jobs:
             print("true" if apps else "false")
             ' "$runtime_dir/start.sh")
 
-            # Prepare dependencies before changing the revision or restarting the running service.
             mkdir -p "$runtime_dir"
             git show "$DEPLOY_SHA:requirements.txt" > "$runtime_dir/requirements.txt"
             "$ILMS_AI_PYTHON" -m venv --clear "$next_venv"
@@ -130,6 +130,7 @@ jobs:
             read -r port < "$venv/port"
             exec "$venv/bin/python" -m uvicorn app.main:app --host 127.0.0.1 --port "$port"
             START
+            chmod +x "$runtime_dir/start.sh"
 
             start_ai() {
               if [ "$process_exists" = true ]; then
